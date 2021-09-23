@@ -15,11 +15,10 @@ public class UrlParser {
 	
 	private static void writeWebElementsToFile(FileWriter fileWriter, WebDriver driver) throws IOException {
 		List<WebElement> webElements = driver.findElements(By.className("list-title"));
-		int xPathCounter = 0;
+		int xPathCounter = 1;
 		fileWriter.write("-----------------------------------------------------------------------------------------------------------------\n");
 		for (WebElement webElement : webElements) {
 			String xPathAdInformation = "/html/body/igt-root/main/igt-ad-single/div[2]/ng-component/div/div/div[2]/div[2]/div/div[1]/ul/li[" + xPathCounter + "]/div[2]";
-			xPathCounter++;
 			if(webElement.getText().equals("İhale Kayıt No")) {
 				fileWriter.write("İhale Kayıt No = " + driver.findElement(By.xpath(xPathAdInformation)).getText() + "\n");
 			}
@@ -32,6 +31,7 @@ public class UrlParser {
 			else if(webElement.getText().equals("İhale Türü")) {
 				fileWriter.write("İhale Türü = " + driver.findElement(By.xpath(xPathAdInformation)).getText() + "\n");
 			}
+			xPathCounter++;
 		}
 	}
 	
